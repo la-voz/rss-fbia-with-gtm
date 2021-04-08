@@ -11,6 +11,10 @@
   "files": [
     "features"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/la-voz/rss-fbia-with-gtm.git"
+  },
   "main": "index.js",
   "name": "@la-voz/rss-fbia-with-gtm",
   "version": "0.8.0"
