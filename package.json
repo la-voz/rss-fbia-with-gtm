@@ -1,0 +1,76 @@
+{
+  "_from": "@wpmedia/rss-fbia-feature-block",
+  "_id": "@wpmedia/rss-fbia-feature-block@0.8.0",
+  "_inBundle": false,
+  "_integrity": "sha512-QmNfjo4EIwnzCPVAQJTYo6/MyK4nLgk3L6jiVVlM3yf2fRKs1K7ApvLqlOhC4RXrSi64YnTCs1EVpAk3uiQTpQ==",
+  "_location": "/@wpmedia/rss-fbia-feature-block",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@wpmedia/rss-fbia-feature-block",
+    "name": "@wpmedia/rss-fbia-feature-block",
+    "escapedName": "@wpmedia%2frss-fbia-feature-block",
+    "scope": "@wpmedia",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "https://npm.pkg.github.com/download/@wpmedia/rss-fbia-feature-block/0.8.0/bf3fa4e807ed47ef89532257e456dbb86ca86ab8df6aec8809b9585de28984e3",
+  "_shasum": "d04dc4de67faeba40170730432e5d831851b7e80",
+  "_spec": "@wpmedia/rss-fbia-feature-block",
+  "_where": "/home/elias/fbia",
+  "author": {
+    "name": "Saru Kalva",
+    "email": "saru.kalva@washpost.com"
+  },
+  "bugs": {
+    "url": "https://github.com/WPMedia/feed-components/issues"
+  },
+  "bundleDependencies": false,
+  "contributors": [
+    {
+      "name": "Tim Kosmider",
+      "email": "timothy.kosmider@washpost.com"
+    },
+    {
+      "name": "Iyob Beyene",
+      "email": "iyob.beyene@washpost.com"
+    },
+    {
+      "name": "Cameron Woodmansee",
+      "email": "cameron.woodmansee@washpost.com"
+    }
+  ],
+  "dependencies": {
+    "@wpmedia/feeds-content-elements": "^0.4.0",
+    "@wpmedia/feeds-prop-types": "0.7.0",
+    "@wpmedia/feeds-resizer": "^0.3.0",
+    "jmespath": "^0.15.0",
+    "moment": "^2.24.0",
+    "xmlbuilder2": "2.1.7"
+  },
+  "deprecated": false,
+  "description": "Fusion components for building Facebook Instant Articles",
+  "files": [
+    "features"
+  ],
+  "homepage": "https://github.com/WPMedia/feed-components#readme",
+  "license": "UNLICENSED",
+  "main": "index.js",
+  "name": "@wpmedia/rss-fbia-feature-block",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/",
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/WPMedia/feed-components.git",
+    "directory": "blocks/rss-fbia-feature-block"
+  },
+  "version": "0.8.0"
+}
