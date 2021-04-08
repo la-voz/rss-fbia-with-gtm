@@ -174,6 +174,8 @@ export function FbiaRss({ globalContent, customFields, arcSite }) {
     adDensity,
     placementSection,
     adScripts,
+    gtmId,
+    gtmDataLayerStyle,
   ) {
     BuildContent.call(this)
 
@@ -242,6 +244,45 @@ export function FbiaRss({ globalContent, customFields, arcSite }) {
       const header = []
       let description, author
       const adScripts = customFields.adScripts || ''
+
+      // Start custom Google Tag Manager script
+      let googleTagManager = ''
+      if (customFields.gtmId.length > 0) {
+        let dataLayer = ''
+        switch (customFields.gtmDataLayerStyle) {
+          case 'los-andes':
+          case 'via-pais':
+          case 'la-voz':
+            let tempAuthor = ''
+            if ((tempAuthor = jmespath.search(s, 'credits.by[].[name]')) && tempAuthor) {
+              tempAuthor = tempAuthor.join(', ')
+            }
+            dataLayer = `dataLayer = [{\
+                source: 'fbia',\
+                articleId: '${jmespath.search(s, 'id')}',\
+                articleTitle: '${jmespath.search(s, itemTitle)}'\
+                author: '${tempAuthor}',\
+                section: '${jmespath.search(s, 'taxonomy.sections[0].name')}',\
+                category: '${jmespath.search(s, 'taxonomy.sections[0]._id')}',\
+                pageType: 'story',\
+                publishDate: '${moment.utc(s.publish_date).format('ddd, DD MMM YYYY HH:mm:ss ZZ')}',\
+            }]`
+            break
+        }
+        googleTagManager = {
+          script: {
+            '@type': 'text/javascript',
+            '#': dataLayer +
+              "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\
+              })(window,document,'script','dataLayer'," + customFields.gtmId + ")",
+          }
+        }
+      }
+      // End custom Google Tag Manager script
+
       if (placementSection)
         header.push({
           section: {
@@ -560,6 +601,8 @@ export function FbiaRss({ globalContent, customFields, arcSite }) {
     customFields.adDensity,
     customFields.placementSection,
     customFields.adScripts,
+    customFields.gtmId,
+    customFields.gtmDataLayerStyle,
   )
 
   // can't return null for xml return type, must return valid xml template
@@ -625,9 +668,23 @@ FbiaRss.propTypes = {
         'Javascript wrapped in the <figure class=‘op-tracker’> tag can be added to the article for ads and analytics. Multiple scripts can be included, usually each in the own iframe',
       defaultValue: '',
     }),
+    gtmId: PropTypes.string.tag({
+      label: 'Google Tag Manager ID',
+      group: 'Facebook Options',
+      description:
+        'Similar to "GTM-XXXX". Leave empty to disable. Use either this or "Analytic Scripts".',
+      defaultValue: '',
+    }),
+    gtmDataLayerStyle: PropTypes.oneOf(['la-voz', 'los-andes', 'via-pais']).tag({
+      label: 'Google Tag Manager dataLayer style',
+      group: 'Facebook Options',
+      description:
+        'Set of prepopulated dataLayer keys and values for Google Tag Manager.',
+      defaultValue: '',
+    }),
     ...generatePropsForFeed('rss', PropTypes),
   }),
 }
 
-FbiaRss.label = 'RSS FBIA'
+FbiaRss.label = 'RSS FBIA with GTM'
 export default Consumer(FbiaRss)
