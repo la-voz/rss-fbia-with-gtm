@@ -13,12 +13,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:la-voz/rss-fbia-with-gtm.git"
+    "url": "git+ssh://git@github.com:la-voz/rss-fbia-with-gtm-feature-block.git"
   },
   "publishConfig": {
     "access": "public"
   },
   "main": "index.js",
-  "name": "@la-voz/rss-fbia-with-gtm",
+  "name": "@la-voz/rss-fbia-with-gtm-feature-block",
   "version": "0.8.0"
 }
